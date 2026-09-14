@@ -1,41 +1,32 @@
-// dotenv for environment variables
 import dotenv from "dotenv";
-// database connection
-import connectDB from "./db/index.js"
-import { app } from './app.js'
+import connectDB from "./db/index.js";
+import { app } from "./app.js";
 
-// dotenv configuration export karte hai dotenv file ko
 dotenv.config({
-    path:'./env'
+    path: "./env"
 });
+
 connectDB()
-.try(() =>{
-    app.listen(process.env.PORT || 8000, ()=>{
-        console.log(`server is running at port ${process.env.PORT}`);
+    // .then(() => {
+    //     app.listen(process.env.PORT || 8000, () => {
+    //         console.log(
+    //             `server is running at port ${process.env.PORT || 8000}`
+    //         );
+    //     });
+    // })
+    // .catch((err) => {
+    //     console.log("MONGODB connection failed !!!", err);
+    // });
+
+.then(()=>{
+    app.listen(process.env.PORT || 8000,()=>{
+        console.log(`server is running at port ${process.env.PORT || 8000}`);
         
     })
-})
-.catch((err) => {
-    console.log("MONGODB connection failed !!!  " , err);
+}).catch((err)=>{
+    console.log('mongoDB connection failed !!! ' , err);
     
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -67,3 +58,19 @@ const app =  express()
 })()*/
 
 
+
+
+
+import express from "express"
+
+const app= express()
+
+app.get("/",(req,res)=>{
+    res.send("<h1>Hell0 baby</h1>")
+
+})
+
+app.listen(8000,()=>{
+    console.log('this is port on is 8000');
+    
+})
